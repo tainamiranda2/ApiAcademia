@@ -8,52 +8,37 @@ use Illuminate\Http\Request;
 
 class USerController extends Controller
 {
+    public function __construct(private User $user){
+
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return USer::all();
+        return User::all();
+      //$users = User::all();
+    
+     // return response()->json("Authorized", 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $user=$this->user->create($request->all());
+    
+        return response()->json($user, 201);
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user=$this->user->find($id);
+        
+            $user->update($request->all());
+
+            return response()->json($user, 200);
     }
 
     /**
@@ -61,6 +46,10 @@ class USerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user=$this->user->find($id);
+            
+                $user->delete();
+    
+                return response()->json([], 204);
     }
 }

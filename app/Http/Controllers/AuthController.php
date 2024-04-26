@@ -13,7 +13,7 @@ class AuthController extends Controller
    // use MakesHttpRequests;
     public function login (Request $request){
        if(Auth::attempt($request->only('email', 'password'))){
-        $token = $request->user()->createToken('academia')->plainTextToken;
+        $token = $request->user()->createToken('academia', ['academia-store', 'academia-update'])->plainTextToken;
         return response('Authorized', 200)->header('Authorizationnnn', 'Bearer ' . $token);
        }else{
         return response('Not Authorized', 403);
