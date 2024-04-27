@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('academias', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->boolean('dono')->default(false);;
             $table->decimal('investimento', 10,2)->nullable();
             $table->string('nome');

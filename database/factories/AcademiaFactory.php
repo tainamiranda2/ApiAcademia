@@ -23,7 +23,7 @@ class AcademiaFactory extends Factory
             'investimento'=>$this->faker->numberBetween(1000, 10000),
             'nome'=>$this->faker->name,
             'endereco'=>$this->faker->sentence(),
-            'data_cadastro'=>$this->faker->randomElement([$this->faker->dateTimeThisMonth])
+            'data_cadastro' => $this->faker->dateTimeBetween('-1 month', 'now')->format('Y-m-d H:i:s'),
             
         ];
     }
