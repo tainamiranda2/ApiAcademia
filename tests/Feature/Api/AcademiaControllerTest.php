@@ -55,12 +55,49 @@ class AcademiaControllerTest extends TestCase
         'dono'=>$academia[ 'dono'],
         'investimento'=>$academia['investimento'] , 
         'nome'=>$academia['nome'], 
-        'endereco'=>$academia['endereco'], 
+        'endereco'=>$academia['endereco'
+      ], 
         'data_cadastro'=>$academia['data_cadastro'], 
         
         ])->etc();
     });
   }
+  public function test_academia_endpoint_put()
+  {
+  Academia::factory(1)->CreateOne();
+  $academia = [
+    'user_id' => 12,
+    'dono' => false, // ou true, dependendo do valor desejado
+    'investimento' => 10000000.02,
+    'nome' => 'nome atualizado',
+    'endereco' => 'endereço atualizado',
+    'data_cadastro' => '2024-04-30 22:23:37' // ou a data correta desejada
+];
 
+
+  $response = $this->putJson('/api/academia/1' , $academia);
+
+   $response->assertStatus( 200);
+  $response->assertJson(function(AssertableJson $json) use($academia){
+    //ver se tem string ou  numero
+    $json->whereAll([
+      'user_id'=>$academia['user_id'] ,
+      'dono'=>$academia[ 'dono'],
+      'investimento'=>$academia['investimento'] , 
+      'nome'=>$academia['nome'], 
+      'endereco'=>$academia['endereco'], 
+      'data_cadastro'=>$academia['data_cadastro'], 
+      
+      ])->etc();
+  });
+}
+
+public function test_delete_academia_endpoit(){
+  Academia::factory(1)->Create();
+
+  $response=$this->deleteJson('/api/academia/3' );
+ 
+  $response->assertStatus(204);
+}
 
 }
