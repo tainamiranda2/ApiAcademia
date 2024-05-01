@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class USerController extends Controller
 {
     public function __construct(private User $user){
-
+        $this->middleware('auth:sanctum')->only(['store', 'update', 'destroy']);
     }
     /**
      * Display a listing of the resource.

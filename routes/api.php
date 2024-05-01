@@ -15,14 +15,15 @@ use Illuminate\Support\Facades\Route;
 //teste de authorização
 
 Route::post('/teste', [AuthController::class, 'login']);
-//Route::get('/user', [USerController::class, 'index'])->middleware('auth:sanctum');
+//Route::get('/user', [AuthController::class, 'index'])->middleware('auth:sanctum');
 
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
-Route::get('/user', [AcademiaController::class, 'index']);
-Route::post('/user', [AcademiaController::class, 'store']);
-Route::put('/user/{id}', [AcademiaController::class, 'update']);
-Route::delete('/user/{id}', [AcademiaController::class, 'index']);
+Route::get('/user', [USerController::class, 'index']);
+Route::post('/user', [USerController::class, 'store']);
+Route::put('/user/{id}', [USerController::class, 'update']);
+Route::delete('/user/{id}', [USerController::class, 'destroy']);
 
 Route::get('/academia', [AcademiaController::class, 'index']);
 Route::post('/academia', [AcademiaController::class, 'store']);
