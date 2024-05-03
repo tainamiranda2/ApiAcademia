@@ -21,11 +21,6 @@ class AcademiaControllerTest extends TestCase
    //    $academia=Academia::factory(3)->Create();
      $response = $this->getJson('/api/academia');
      $response->assertStatus( 200);
-     /* $response->assertStatus( 200)
-                 ->assertSee("Authorized");
-  */ 
-     
-// $response->assertJsonCount(10);
 
 
   $response->assertJson(function(AssertableJson $json){
@@ -62,6 +57,7 @@ class AcademiaControllerTest extends TestCase
         ])->etc();
     });
   }
+  
   public function test_academia_endpoint_put()
   {
   Academia::factory(1)->CreateOne();
@@ -95,7 +91,7 @@ class AcademiaControllerTest extends TestCase
 public function test_delete_academia_endpoit(){
   Academia::factory(1)->Create();
 
-  $response=$this->deleteJson('/api/academia/3' );
+  $response=$this->deleteJson('/api/academia/25' );
  
   $response->assertStatus(204);
 }

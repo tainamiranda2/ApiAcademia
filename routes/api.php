@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 //teste de authorização
 
-Route::post('/teste', [AuthController::class, 'login']);
+//Route::post('/teste', [AuthController::class, 'login']);
 //Route::get('/user', [AuthController::class, 'index'])->middleware('auth:sanctum');
 
 Route::post('/login', [AuthController::class, 'login']);
